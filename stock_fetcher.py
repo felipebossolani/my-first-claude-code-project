@@ -103,23 +103,30 @@ Examples:
     )
 
     args = parser.parse_args()
-    ticker = args.ticker.upper()
+    args = parser.parse_args()
+    
+    # Split tickers by comma and clean up whitespace
+    tickers = [t.strip().upper() for t in args.ticker.split(',')]
 
-    try:
-        # Fetch stock data
-        stock_data = fetch_stock_prices(ticker)
+    for i, ticker in enumerate(tickers):
+        if not ticker:
+            continue
+            
+        try:
+            # Fetch stock data
+            stock_data = fetch_stock_prices(ticker)
 
-        # Display the data
-        display_stock_data(stock_data, ticker)
+            # Display the data
+            display_stock_data(stock_data, ticker)
 
-        print(f"\n{'='*80}\n")
+            # Print separator if not the last ticker
+            if i < len(tickers) - 1:
+                print(f"\n{'='*80}\n")
 
-    except ValueError as e:
-        print(f"\nError: {e}\n", file=sys.stderr)
-        sys.exit(1)
-    except Exception as e:
-        print(f"\nUnexpected error: {e}\n", file=sys.stderr)
-        sys.exit(1)
+        except ValueError as e:
+            print(f"\nError: {e}", file=sys.stderr)
+        except Exception as e:
+            print(f"\nUnexpected error processing {ticker}: {e}", file=sys.stderr)
 
 
 if __name__ == "__main__":
