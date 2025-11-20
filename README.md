@@ -2,12 +2,14 @@
 
 A simple Python script to fetch and display historical stock prices from Yahoo Finance using the `yfinance` library.
 
+[Abrir no Binder](https://mybinder.org/v2/gh/felipebossolani/my-first-claude-code-project/HEAD)
+
 ## Features
 
 - Fetches the last 30 days of historical stock price data
 - Displays stock data in a formatted table
 - Shows summary statistics (high, low, average prices)
-- Supports command-line arguments for custom stock tickers
+- Supports command-line arguments for custom stock tickers (single or multiple)
 - Defaults to AAPL (Apple Inc.) if no ticker is provided
 
 ## Requirements
@@ -41,6 +43,11 @@ python stock_fetcher.py
 python stock_fetcher.py MSFT      # Microsoft
 python stock_fetcher.py GOOGL     # Google
 python stock_fetcher.py TSLA      # Tesla
+```
+
+### Fetch multiple stock tickers:
+```bash
+python stock_fetcher.py AAPL,MSFT,GOOGL
 ```
 
 ### View help:
